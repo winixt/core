@@ -62,7 +62,7 @@ class Menu extends Disposable implements IMenu {
     // when context keys change we need to check if the menu also has changed
     this.addDispose(Event.debounce<ContextKeyChangeEvent, boolean>(
       this.contextKeyService.onDidChangeContext,
-      (last, event) => last || event.payload.affectsSome(this._contextKeys),
+      (last, event) => event.payload.affectsSome(this._contextKeys),
       50,
     )((e) => e && this._onDidChange.fire(undefined), this));
 
