@@ -1,11 +1,11 @@
-name Next Release Flow
+name: Next Release Flow
 
 on:
+  ## Just for testing
+  workflow_dispatch:
   issue:
     types: [ opened ]
 
-  ## Just for testing
-  workflow_dispatch:
 
 jobs:
   release:
