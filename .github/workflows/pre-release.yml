@@ -3,7 +3,7 @@ name: Next Release Flow
 on:
   ## Just for testing
   workflow_dispatch:
-  issue:
+  issues:
     types: [ opened ]
 
 
