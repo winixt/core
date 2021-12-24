@@ -32,11 +32,16 @@ jobs:
           npm i
           npm run init
 
+      # 获取当前分支最新的 commit sha
+      - name: Set commit sha
+        run: |
+          echo "COMPARE_COMMIT_SHA=$(git rev-list -n 1 HEAD)" >> $GITHUB_ENV
+
       # 生成 Changelog, 会将内容写入到 ./releaselog.md 中
       - name: Create release log
         id: release-log
         run:  |
-          npm run changelog
+          npm run changelog --remote
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
