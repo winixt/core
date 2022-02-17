@@ -141,7 +141,7 @@ describe('Webview view tests ', () => {
     done();
   });
 
-  it('display a webview view', async (done) => {
+  it('display a webview view', async () => {
     const viewType = 'webviewViewTestViewType';
 
     const testProvider: WebviewViewProvider = {
@@ -178,8 +178,6 @@ describe('Webview view tests ', () => {
     const webview = webviews.get(Array.from(webviews.keys())[0])!;
     expect(webview.appendTo).toBeCalledWith(container);
     expect(webview.setContent).toBeCalledWith('testHtmlContent');
-
-    done();
   });
 
   afterAll(() => {

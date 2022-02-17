@@ -82,7 +82,7 @@ describe('editor status bar item test', () => {
     expect(accessor.addZone).toBeCalled();
   });
 
-  it('formatter select test', async (done) => {
+  it('formatter select test', async () => {
     injector.mockService(QuickPickService, {
       show: (strings: any[]) => strings[0].value,
     });
@@ -123,8 +123,6 @@ describe('editor status bar item test', () => {
     );
 
     expect(config['editor.preferredFormatter']['javascript']).toBe('testFormatter');
-
-    done();
   });
 
   afterAll(() => {

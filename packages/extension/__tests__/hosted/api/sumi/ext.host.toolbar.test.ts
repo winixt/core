@@ -98,7 +98,7 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.toolbar.test.ts'
     toolbarAPI = createToolbarAPIFactory(extension, extHostToolbar);
   });
 
-  it('toolbarAPI#registerToolbarAction button should be work', async (done) => {
+  it('toolbarAPI#registerToolbarAction button should be work', async () => {
     const id = `${extension.id}-toolbar`;
     await toolbarAPI.registerToolbarAction({
       id,
@@ -118,10 +118,9 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.toolbar.test.ts'
 
     const hostAction = await toolbarAPI.getToolbarActionButtonHandle(id);
     expect(hostAction).toBeDefined();
-    done();
   });
 
-  it('toolbarAPI#registerToolbarAction button setState should be work', async (done) => {
+  it('toolbarAPI#registerToolbarAction button setState should be work', (done) => {
     const id = `${extension.id}-toolbar`;
     const hostAction = await toolbarAPI.getToolbarActionButtonHandle(id);
     hostAction.onStateChanged((e) => {
@@ -129,10 +128,10 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.toolbar.test.ts'
       done();
     });
 
-    await hostAction.setState('hover');
+    hostAction.setState('hover');
   });
 
-  it('toolbarAPI#registerToolbarAction select should be work', async (done) => {
+  it('toolbarAPI#registerToolbarAction select should be work', async () => {
     const id = `${extension.id}-toolbar-select`;
     await toolbarAPI.registerToolbarAction({
       id,
@@ -157,7 +156,6 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.toolbar.test.ts'
 
     const hostAction = await toolbarAPI.getToolbarActionSelectHandle(id);
     expect(hostAction).toBeDefined();
-    done();
   });
 
   it('toolbarAPI#registerToolbarAction select setState should be work', async (done) => {

@@ -21,7 +21,7 @@ describe('Extension Client Serivce', () => {
   const testExtPath = 'opensumi.ide-dark-theme-1.13.1';
   const testExtReadme = '# IDE Dark Theme';
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     injector = createNodeInjector([]);
     injector.addProviders(
       {
@@ -65,7 +65,6 @@ describe('Extension Client Serivce', () => {
       },
     );
     extensionNodeClient = injector.get(IExtensionNodeClientService);
-    done();
   });
 
   describe('get all extensions', () => {
@@ -103,7 +102,7 @@ describe('Extension Client Serivce', () => {
   });
 
   describe('language pack', () => {
-    it('should generate languagepacks.json and set VSCODE_NLS_CONFIG', async (done) => {
+    it('should generate languagepacks.json and set VSCODE_NLS_CONFIG', async () => {
       // download languagepack extension
       const name = 'vscode-language-pack-zh-hans';
       const publisher = 'vscode-extensions';
@@ -120,7 +119,6 @@ describe('Extension Client Serivce', () => {
       expect(!!process.env['VSCODE_NLS_CONFIG']);
       const nlsConfig = JSON.parse(process.env['VSCODE_NLS_CONFIG']!);
       expect(nlsConfig.locale).toBe('zh-cn');
-      done();
     });
   });
 });

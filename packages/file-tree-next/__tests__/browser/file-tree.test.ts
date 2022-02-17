@@ -56,7 +56,7 @@ describe('FileTree should be work while on single workspace model', () => {
     'workbench.list.openMode': 'singleClick',
     'editor.previewMode': true,
   };
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     mockFileTreeApi = {
       mv: jest.fn(),
       copyFile: jest.fn(),
@@ -100,9 +100,8 @@ describe('FileTree should be work while on single workspace model', () => {
         await fs.ensureFile(file.path);
       }
     }
-    done();
   });
-  beforeEach(async (done) => {
+  beforeEach(async () => {
     injector = createBrowserInjector([FileTreeNextModule]);
 
     // mock used instance
@@ -217,12 +216,9 @@ describe('FileTree should be work while on single workspace model', () => {
     await fileTreeModelService.treeModel.root.ensureLoaded();
 
     fileTreeService = injector.get<FileTreeService>(IFileTreeService);
-
-    done();
   });
-  afterEach(async (done) => {
+  afterEach(async () => {
     injector.disposeAll();
-    done();
   });
   afterAll(() => {
     track.cleanupSync();
@@ -252,7 +248,7 @@ describe('FileTree should be work while on single workspace model', () => {
   });
 
   describe('02 #Basic API should be worked', () => {
-    it('Expand and collapse Directory should be work', async (done) => {
+    it('Expand and collapse Directory should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const directoryNode = rootNode.getTreeNodeAtIndex(0) as Directory;
@@ -265,7 +261,6 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(rootNode.branchSize).toBe(filesMap.length);
       // clean effect
       await fs.remove(path.join(directoryNode.uri.path.toString(), 'child_file'));
-      done();
     });
 
     it('Symbolic file should be create with correct decoration and file stat', async (done) => {
@@ -290,7 +285,7 @@ describe('FileTree should be work while on single workspace model', () => {
       await fileTreeService.refresh();
     });
 
-    it('Style decoration should be right while click the item', async (done) => {
+    it('Style decoration should be right while click the item', async () => {
       const { handleItemClick, decorations } = fileTreeModelService;
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
@@ -307,10 +302,9 @@ describe('FileTree should be work while on single workspace model', () => {
       const fileDecoration = decorations.getDecorations(fileNode);
       expect(fileDecoration?.classlist).toEqual([styles.mod_selected, styles.mod_focused]);
       expect(openFile).toBeCalledWith(fileNode.uri, { disableNavigate: true, preview: true });
-      done();
     });
 
-    it('Style decoration should be right while click with ctrl/cmd/shift', async (done) => {
+    it('Style decoration should be right while click with ctrl/cmd/shift', async () => {
       const { handleItemClick, handleItemToggleClick, handleItemRangeClick, decorations } = fileTreeModelService;
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
@@ -334,10 +328,9 @@ describe('FileTree should be work while on single workspace model', () => {
       const fileDecoration = decorations.getDecorations(fileNode);
       expect(fileDecoration?.classlist).toEqual([styles.mod_selected]);
       expect(fileTreeModelService.selectedFiles.length).toBe(3);
-      done();
     });
 
-    it('Cut - Paste should be work', async (done) => {
+    it('Cut - Paste should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { pasteFile, cutFile, decorations } = fileTreeModelService;
@@ -355,10 +348,9 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(directoryNode.expanded).toBeTruthy();
       expect(fileTreeModelService.pasteStore.type).toBe(PasteTypes.NONE);
       expect(mockFileTreeApi.mv).toBeCalled();
-      done();
     });
 
-    it('Copy - Paste should be work', async (done) => {
+    it('Copy - Paste should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { copyFile, pasteFile } = fileTreeModelService;
@@ -374,10 +366,9 @@ describe('FileTree should be work while on single workspace model', () => {
       // paste type should be COPY after paste
       expect(fileTreeModelService.pasteStore.type).toBe(PasteTypes.COPY);
       expect(mockFileTreeApi.copyFile).toBeCalled();
-      done();
     });
 
-    it('Location file should be work', async (done) => {
+    it('Location file should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const fileNode = rootNode.getTreeNodeAtIndex(1) as File;
@@ -392,10 +383,9 @@ describe('FileTree should be work while on single workspace model', () => {
       );
       const fileDecoration = decorations.getDecorations(fileNode);
       expect(fileDecoration?.classlist).toEqual([styles.mod_selected]);
-      done();
     });
 
-    it('Location file should be work while fileTree can be see', async (done) => {
+    it('Location file should be work while fileTree can be see', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const fileNode = rootNode.getTreeNodeAtIndex(1) as File;
@@ -411,7 +401,6 @@ describe('FileTree should be work while on single workspace model', () => {
       );
       const fileDecoration = decorations.getDecorations(fileNode);
       expect(fileDecoration?.classlist).toEqual([styles.mod_selected]);
-      done();
     });
 
     it('Move to next file node should be work', () => {
@@ -459,7 +448,7 @@ describe('FileTree should be work while on single workspace model', () => {
       }
     });
 
-    it('Collapse current file node should be work', async (done) => {
+    it('Collapse current file node should be work', (done) => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const directoryNode = rootNode.getTreeNodeAtIndex(0) as Directory;
@@ -474,7 +463,7 @@ describe('FileTree should be work while on single workspace model', () => {
       directoryNode.setExpanded();
     });
 
-    it('New File with root uri should be work', async (done) => {
+    it('New File with root uri should be work', async () => {
       const promptHandle = {
         destroyed: false,
         onChange: jest.fn(),
@@ -493,10 +482,9 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(promptHandle.onFocus).toBeCalled();
       expect(promptHandle.onDestroy).toBeCalled();
       expect(promptHandle.onCancel).toBeCalled();
-      done();
     });
 
-    it('New Directory with root uri should be work', async (done) => {
+    it('New Directory with root uri should be work', async () => {
       const promptHandle = {
         destroyed: false,
         onChange: jest.fn(),
@@ -515,12 +503,11 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(promptHandle.onFocus).toBeCalled();
       expect(promptHandle.onDestroy).toBeCalled();
       expect(promptHandle.onCancel).toBeCalled();
-      done();
     });
   });
 
   describe('03 #DragAndDrop Service should be work', () => {
-    it('Start Dragging with single selected node', async (done) => {
+    it('Start Dragging with single selected node', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService, decorations } = fileTreeModelService;
@@ -542,10 +529,9 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(mockEvent.stopPropagation).toBeCalled();
       expect(mockEvent.dataTransfer.setDragImage).toBeCalled();
       expect(mockEvent.dataTransfer.setData).toBeCalled();
-      done();
     });
 
-    it('Dragging Enter should be work', async (done) => {
+    it('Dragging Enter should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService } = fileTreeModelService;
@@ -557,10 +543,9 @@ describe('FileTree should be work while on single workspace model', () => {
       dndService.handleDragEnter(mockEvent as any, fileNode);
       expect(mockEvent.preventDefault).toBeCalled();
       expect(mockEvent.stopPropagation).toBeCalled();
-      done();
     });
 
-    it('Dragging Leave should be work', async (done) => {
+    it('Dragging Leave should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService } = fileTreeModelService;
@@ -572,10 +557,9 @@ describe('FileTree should be work while on single workspace model', () => {
       dndService.handleDragLeave(mockEvent as any, fileNode);
       expect(mockEvent.stopPropagation).toBeCalled();
       expect(mockEvent.preventDefault).toBeCalled();
-      done();
     });
 
-    it('Dragging Over should be work', async (done) => {
+    it('Dragging Over should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService, decorations } = fileTreeModelService;
@@ -589,10 +573,9 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(mockEvent.preventDefault).toBeCalled();
       const directoryDecoration = decorations.getDecorations(directoryNode);
       expect(directoryDecoration?.classlist).toEqual([styles.mod_dragover]);
-      done();
     });
 
-    it('Dragging End should be work', async (done) => {
+    it('Dragging End should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService, decorations } = fileTreeModelService;
@@ -601,10 +584,9 @@ describe('FileTree should be work while on single workspace model', () => {
       dndService.handleDragEnd(mockEvent as any, directoryNode);
       const directoryDecoration = decorations.getDecorations(directoryNode);
       expect(directoryDecoration?.classlist).toEqual([]);
-      done();
     });
 
-    it('Drop should be work', async (done) => {
+    it('Drop should be work', async () => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const { dndService, decorations } = fileTreeModelService;
@@ -622,12 +604,11 @@ describe('FileTree should be work while on single workspace model', () => {
       expect(mockEvent.dataTransfer.dropEffect).toBe('copy');
       const directoryDecoration = decorations.getDecorations(directoryNode);
       expect(directoryDecoration?.classlist).toEqual([]);
-      done();
     });
   });
 
   describe('04 #Compact Mode should be work', () => {
-    it('Directory should be compressed while it contain single file', async (done) => {
+    it('Directory should be compressed while it contain single file', (done) => {
       const treeModel = fileTreeModelService.treeModel;
       const rootNode = treeModel.root;
       const directoryNode = rootNode.getTreeNodeAtIndex(0) as Directory;
@@ -650,7 +631,7 @@ describe('FileTree should be work while on single workspace model', () => {
         dispose.dispose();
         done();
       });
-      await fileTreeService.refresh();
+      fileTreeService.refresh();
     });
   });
 });

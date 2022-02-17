@@ -124,7 +124,7 @@ describe('file scheme tests', () => {
     expect(await resourceProvider.shouldCloseResource(resource, [[resource]])).toBeFalsy();
   });
 
-  it('doc service test', async (done) => {
+  it('doc service test', async () => {
     const docContentPrefix = 'this is docContent for ';
     const documentProvider = injector.get(FileSchemeDocumentProvider);
 
@@ -185,7 +185,5 @@ describe('file scheme tests', () => {
         testSchemaKey: 'string',
       }),
     );
-
-    done();
   });
 });

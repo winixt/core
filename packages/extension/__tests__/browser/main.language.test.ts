@@ -105,7 +105,7 @@ describe('ExtHostLanguageFeatures', () => {
 
   (global as any).amdLoader = { require: null };
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     monacoService = injector.get(MonacoService);
     await monacoService.loadMonaco();
     model = createModel(
@@ -141,7 +141,6 @@ describe('ExtHostLanguageFeatures', () => {
       id: 'a',
       extensions: ['.a'],
     });
-    done();
   });
 
   afterAll(() => {
@@ -150,7 +149,7 @@ describe('ExtHostLanguageFeatures', () => {
     disposables.dispose();
   });
 
-  test('CodeLens, evil provider', async (done) => {
+  test('CodeLens, evil provider', (done) => {
     disposables.push(
       extHost.registerCodeLensProvider(
         defaultSelector,
@@ -180,7 +179,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('CodeLens, do not resolve a resolved lens', async (done) => {
+  test('CodeLens, do not resolve a resolved lens', (done) => {
     disposables.push(
       extHost.registerCodeLensProvider(
         defaultSelector,
@@ -205,7 +204,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('CodeLens, missing command', async (done) => {
+  test('CodeLens, missing command', (done) => {
     disposables.push(
       extHost.registerCodeLensProvider(
         defaultSelector,
@@ -225,7 +224,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('Definition, data conversion', async (done) => {
+  test('Definition, data conversion', (done) => {
     disposables.push(
       extHost.registerDefinitionProvider(
         defaultSelector,
@@ -252,7 +251,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('Implementation, data conversion', async (done) => {
+  test('Implementation, data conversion', (done) => {
     disposables.push(
       extHost.registerImplementationProvider(
         defaultSelector,
@@ -278,7 +277,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('Type Definition, data conversion', async (done) => {
+  test('Type Definition, data conversion', (done) => {
     disposables.push(
       extHost.registerTypeDefinitionProvider(
         defaultSelector,
@@ -304,7 +303,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('HoverProvider, word range at pos', async (done) => {
+  test('HoverProvider, word range at pos', (done) => {
     disposables.push(
       extHost.registerHoverProvider(
         defaultSelector,
@@ -323,7 +322,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('HoverProvider, given range', async (done) => {
+  test('HoverProvider, given range', (done) => {
     disposables.push(
       extHost.registerHoverProvider(
         defaultSelector,
@@ -343,7 +342,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('Occurrences, data conversion', async (done) => {
+  test('Occurrences, data conversion', (done) => {
     disposables.push(
       extHost.registerDocumentHighlightProvider(
         defaultSelector,
@@ -373,7 +372,7 @@ describe('ExtHostLanguageFeatures', () => {
 
   // --- references
 
-  test('References, data conversion', async (done) => {
+  test('References, data conversion', (done) => {
     disposables.push(
       extHost.registerReferenceProvider(
         defaultSelector,
@@ -409,7 +408,7 @@ describe('ExtHostLanguageFeatures', () => {
     deactivate: () => {},
     toJSON: () => {},
   } as unknown as IExtensionDescription;
-  test('Quick Fix, command data conversion', async (done) => {
+  test('Quick Fix, command data conversion', (done) => {
     disposables.push(
       extHost.registerCodeActionsProvider(extension, defaultSelector, {
         provideCodeActions(): vscode.Command[] {
@@ -439,7 +438,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('Quick Fix, code action data conversion', async (done) => {
+  test('Quick Fix, code action data conversion', (done) => {
     disposables.push(
       extHost.registerCodeActionsProvider(extension, defaultSelector, {
         provideCodeActions(): vscode.CodeAction[] {
@@ -472,7 +471,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test("Cannot read property 'id' of undefined, #29469", async (done) => {
+  test("Cannot read property 'id' of undefined, #29469", (done) => {
     disposables.push(
       extHost.registerCodeActionsProvider(
         extension,
@@ -501,7 +500,7 @@ describe('ExtHostLanguageFeatures', () => {
 
   // --- rename
 
-  test('Rename', async (done) => {
+  test('Rename', (done) => {
     disposables.push(
       extHost.registerRenameProvider(
         defaultSelector,
@@ -531,7 +530,7 @@ describe('ExtHostLanguageFeatures', () => {
 
   // --- parameter hints
 
-  test('Parameter Hints, evil provider', async (done) => {
+  test('Parameter Hints, evil provider', (done) => {
     disposables.push(
       extHost.registerSignatureHelpProvider(
         defaultSelector,
@@ -564,7 +563,7 @@ describe('ExtHostLanguageFeatures', () => {
 
   // --- suggestions
 
-  test('Suggest, CompletionList', async (done) => {
+  test('Suggest, CompletionList', (done) => {
     disposables.push(
       extHost.registerCompletionItemProvider(
         defaultSelector,
@@ -591,7 +590,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('Format Range, data conversion', async (done) => {
+  test('Format Range, data conversion', (done) => {
     disposables.push(
       extHost.registerDocumentRangeFormattingEditProvider(
         {
@@ -624,7 +623,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('Format on Type, data conversion', async (done) => {
+  test('Format on Type, data conversion', (done) => {
     disposables.push(
       extHost.registerOnTypeFormattingEditProvider(
         defaultSelector,
@@ -655,7 +654,7 @@ describe('ExtHostLanguageFeatures', () => {
       done();
     }, 0);
   });
-  test('Links, data conversion', async (done) => {
+  test('Links, data conversion', (done) => {
     disposables.push(
       extHost.registerDocumentLinkProvider(
         defaultSelector,
@@ -682,7 +681,7 @@ describe('ExtHostLanguageFeatures', () => {
     }, 0);
   });
 
-  test('Document colors, data conversion', async (done) => {
+  test('Document colors, data conversion', (done) => {
     disposables.push(
       extHost.registerColorProvider(
         defaultSelector,
@@ -712,7 +711,7 @@ describe('ExtHostLanguageFeatures', () => {
     });
   });
 
-  test('Selection Ranges, data conversion', async (done) => {
+  test('Selection Ranges, data conversion', (done) => {
     disposables.push(
       extHost.registerSelectionRangeProvider(
         defaultSelector,
@@ -890,7 +889,7 @@ An error case:
   }
   const hostedProvider = new TestSemanticTokensProvider();
 
-  it('registerDocumentSemanticTokensProvider should be work', async (done) => {
+  it('registerDocumentSemanticTokensProvider should be work', (done) => {
     const semanticLegend = new types.SemanticTokensLegend(tokenTypesLegend, tokenModifiersLegend);
     monaco.languages.register({
       id: 'semanticLanguage',
@@ -914,7 +913,7 @@ An error case:
     }, 0);
   });
 
-  it('provideDocumentSemanticTokens should be work', async (done) => {
+  it('provideDocumentSemanticTokens should be work', async () => {
     const uri = monaco.Uri.parse('file:///path/to/simple1.semanticLanguage');
     const textModel = createModel('', 'semanticLanguage', uri);
 
@@ -932,7 +931,6 @@ An error case:
     expect(mockProvideFunc).toBeCalled();
     expect(tokens?.resultId).toBe('1');
     expect((tokens as types.SemanticTokens)?.data instanceof Uint32Array).toBeTruthy();
-    done();
   });
   // #endregion Semantic Tokens
   // #region Call Hierarchy
@@ -1037,7 +1035,7 @@ An error case:
   };
 
   // #region EvaluatableExpressionProvider
-  it('registerEvaluatableExpressionProvider should be work', async (done) => {
+  it('registerEvaluatableExpressionProvider should be work', (done) => {
     monaco.languages.register({
       id: 'test',
       extensions: ['.test'],

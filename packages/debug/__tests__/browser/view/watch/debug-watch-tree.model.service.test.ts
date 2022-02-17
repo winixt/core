@@ -53,7 +53,7 @@ describe('Debug Watch Tree Model', () => {
     })),
   };
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     mockInjector.overrideProviders({
       token: DebugHoverSource,
       useValue: mockDebugHoverSource,
@@ -83,7 +83,6 @@ describe('Debug Watch Tree Model', () => {
     debugWatchModelService = mockInjector.get(DebugWatchModelService);
 
     await debugWatchModelService.load();
-    done();
   });
 
   afterAll(() => {
@@ -115,7 +114,7 @@ describe('Debug Watch Tree Model', () => {
     expect(Array.isArray(debugWatchModelService.selectedNodes)).toBeTruthy();
   });
 
-  it('initTreeModel method should be work', async (done) => {
+  it('initTreeModel method should be work', (done) => {
     debugWatchModelService.onDidUpdateTreeModel(() => {
       done();
     });
@@ -214,7 +213,7 @@ describe('Debug Watch Tree Model', () => {
     expect(mockEvent.preventDefault).toBeCalledTimes(1);
   });
 
-  it('refresh method should be work', async (done) => {
+  it('refresh method should be work', (done) => {
     debugWatchModelService.onDidRefreshed(() => {
       done();
     });

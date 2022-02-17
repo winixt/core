@@ -20,7 +20,7 @@ describe('vscode extHostWebview Test', () => {
 
   const extHostWebview = new ExtHostWebviewService(rpcProtocol as any);
 
-  it('ext host vscode webview test', async (done) => {
+  it('ext host vscode webview test', async () => {
     await extHostWebview.$init();
     expect((extHostWebview as any).resourceRoots).toEqual(['testResourceRoots']);
     const extensionInfo: IExtensionInfo = {
@@ -107,7 +107,6 @@ describe('vscode extHostWebview Test', () => {
     await extHostWebview.$onDidDisposeWebviewPanel(id);
     expect((webviewPanel as any)._isDisposed).toBeTruthy();
     expect(() => webviewPanel.webview).toThrowError();
-    done();
   });
 });
 
@@ -124,7 +123,7 @@ describe('sumi extHostWebview Test', () => {
 
   const extHostWebview = new ExtHostWebview(rpcProtocol as any);
 
-  it('ext host sumi webview test', async (done) => {
+  it('ext host sumi webview test', async () => {
     const handle1 = await extHostWebview.getWebviewHandle('existingWebview');
     expect(mainService.$connectPlainWebview).toBeCalledWith('existingWebview');
 
@@ -149,7 +148,5 @@ describe('sumi extHostWebview Test', () => {
 
     handle1.dispose();
     handle2.dispose();
-
-    done();
   });
 });

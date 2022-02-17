@@ -20,7 +20,7 @@ describe('Extension Serivce', () => {
   const testExtPath = 'opensumi.ide-dark-theme-1.13.1';
   const testExtReadme = '# IDE Dark Theme';
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     injector = createNodeInjector([]);
     injector.addProviders(
       {
@@ -73,7 +73,6 @@ describe('Extension Serivce', () => {
     );
 
     extensionService = injector.get(IExtensionNodeService);
-    done();
   });
 
   afterAll(async () => {
@@ -122,7 +121,7 @@ describe('Extension Serivce', () => {
       await extensionService.disposeClientExtProcess(mockExtClientId, true);
     });
 
-    it.skip('enable extProcess inspect port', async (done) => {
+    it.skip('enable extProcess inspect port', async () => {
       (global as any).isDev = undefined;
       const mockExtClientId = 'mock_id' + Math.random();
       await extensionService.createProcess(mockExtClientId);
@@ -133,7 +132,6 @@ describe('Extension Serivce', () => {
       const port = await extensionService.getProcessInspectPort(mockExtClientId);
       expect(typeof port).toBe('number');
       await extensionService.disposeClientExtProcess(mockExtClientId, true);
-      done();
     });
 
     it('create extension host process with develop mode', async () => {

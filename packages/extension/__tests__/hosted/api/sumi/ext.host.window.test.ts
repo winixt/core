@@ -64,12 +64,11 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.window.test.ts',
     const webviewId = 'TestView';
     let window: ExtIDEWebviewWindow;
 
-    beforeAll(async (done) => {
+    beforeAll(async () => {
       window = (await windowAPI.createWebviewWindow(webviewId, {}, {}))!;
-      done();
     });
 
-    it('message event can be received', async (done) => {
+    it('message event can be received', (done) => {
       expect(window).toBeDefined();
       const testMessage = 'message';
       window.onMessage((message) => {
@@ -79,7 +78,7 @@ describe('packages/extension/__tests__/hosted/api/sumi/ext.host.window.test.ts',
       extHostIDEWindow.$postMessage(webviewId, testMessage);
     });
 
-    it('closed event can be received', async (done) => {
+    it('closed event can be received', (done) => {
       window.onClosed(() => {
         done();
       });
