@@ -25,7 +25,7 @@ describe('KeyboardLayoutService should be work', () => {
     getData: (key) => storage[key],
   };
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     injector = createBrowserInjector(
       [],
       new MockInjector([
@@ -43,7 +43,6 @@ describe('KeyboardLayoutService should be work', () => {
     keyboardLayoutService = injector.get(KeyboardLayoutService);
 
     await keyboardLayoutService.initialize();
-    done();
   });
 
   afterAll(() => {
@@ -62,15 +61,15 @@ describe('KeyboardLayoutService should be work', () => {
   });
 
   describe('#method should be work', () => {
-    it('initialize & onKeyboardLayoutChanged', async (done) => {
+    it('initialize & onKeyboardLayoutChanged', (done) => {
       const disposable = keyboardLayoutService.onKeyboardLayoutChanged(() => {
         disposable.dispose();
         done();
       });
-      await keyboardLayoutService.initialize();
+      keyboardLayoutService.initialize();
     });
 
-    it('resolveKeyCode & getKeyboardCharacter', async (done) => {
+    it('resolveKeyCode & getKeyboardCharacter', (done) => {
       require('../../src/keyboard/layouts/en.linux.ts');
       const keyboardLayoutProvider: KeyboardNativeLayoutService = injector.get(KeyboardNativeLayoutService);
       const layout = KeyboardLayoutContribution.INSTANCE.layoutInfos.find(
@@ -86,7 +85,7 @@ describe('KeyboardLayoutService should be work', () => {
         disposable.dispose();
         done();
       });
-      await keyboardLayoutProvider.setLayoutData(layout as any);
+      keyboardLayoutProvider.setLayoutData(layout as any);
     });
 
     it('validateKeyCode', (done) => {

@@ -1,6 +1,5 @@
 const { pathsToModuleNameMapper } = require('ts-jest');
 const tsconfig = require('./configs/ts/tsconfig.resolve.json');
-const os = require('os');
 
 const tsModuleNameMapper = pathsToModuleNameMapper(tsconfig.compilerOptions.paths, { prefix: '<rootDir>/configs/' });
 
@@ -9,7 +8,7 @@ module.exports = {
   testRunner: 'jest-jasmine2',
   testEnvironment: 'node',
   coverageProvider: process.env.JEST_COVERAGE_PROVIDER || 'babel',
-  maxWorkers: process.env.SIGMA_MAX_PROCESSORS_LIMIT || os.cpus().length,
+  maxWorkers: '50%',
   setupFiles: ['./jest.setup.js'],
   collectCoverageFrom: [
     'packages/*/src/**/*.ts',

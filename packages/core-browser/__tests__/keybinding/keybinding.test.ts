@@ -97,7 +97,7 @@ describe('KeybindingRegistry', () => {
   });
 
   describe('01 #Init', () => {
-    test('should ready to work after init', async (done) => {
+    test('should ready to work after init', async () => {
       expect(typeof keybindingRegistry.initialize).toBe('function');
       expect(typeof keybindingRegistry.registerKeybinding).toBe('function');
       expect(typeof keybindingRegistry.registerKeybindings).toBe('function');
@@ -116,7 +116,6 @@ describe('KeybindingRegistry', () => {
       expect(typeof keybindingRegistry.isPseudoCommand).toBe('function');
       expect(typeof keybindingRegistry.resetKeybindings).toBe('function');
       expect(typeof keybindingRegistry.onKeybindingsChanged).toBe('function');
-      done();
     });
   });
 
@@ -354,13 +353,11 @@ describe('KeybindingService', () => {
   });
 
   describe('01 #Init', () => {
-    test('should ready to work after init', async (done) => {
+    test('should ready to work after init', async () => {
       expect(typeof keybindingService.run).toBe('function');
       expect(typeof keybindingService.convert).toBe('function');
       expect(typeof keybindingService.clearConvert).toBe('function');
       expect(typeof keybindingService.convertMonacoWhen).toBe('function');
-
-      done();
     });
   });
 
