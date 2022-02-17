@@ -2,7 +2,6 @@ import { ExtHostFileSystemInfo } from '../../src/hosted/api/vscode/ext.host.file
 import {
   Uri as vscodeUri,
   Emitter,
-  IFileServiceClient,
   URI,
   Uri,
   IEventBus,
@@ -14,6 +13,7 @@ import {
   IApplicationService,
   DisposableCollection,
 } from '@opensumi/ide-core-common';
+import { IFileServiceClient } from '@opensumi/ide-file-service/lib/common';
 import { MockInjector, mockService } from '../../../../tools/dev-tool/src/mock-injector';
 import path from 'path';
 import fs from 'fs';
@@ -533,14 +533,15 @@ describe('MainThreadWorkspace API Test Suite', () => {
     expect(onDidRename?.files[0].newUri.toString()).toEqual(newUri.toString());
   });
 
-  it('should receive onDidChangeWorkspaceFolders when workspace folder has changed', async (done) => {
-    extHostWorkspaceAPI.onDidChangeWorkspaceFolders((e) => {
-      expect(e.added.length).toBe(1);
-      expect(e.added[0].name).toBe(path.basename(__dirname));
-      done();
-    });
-    const fileServiceClient: FileServiceClient = injector.get(IFileServiceClient);
-    const roots = [await fileServiceClient.getFileStat(URI.file(path.join(__dirname)).toString())];
-    workspaceService._onWorkspaceChanged.fire(roots as FileStat[]);
-  });
+  it('should receive onDidChangeWorkspaceFolders when workspace folder has changed', () =>
+    new Promise<void>(async (done) => {
+      extHostWorkspaceAPI.onDidChangeWorkspaceFolders((e) => {
+        expect(e.added.length).toBe(1);
+        expect(e.added[0].name).toBe(path.basename(__dirname));
+        done();
+      });
+      const fileServiceClient: FileServiceClient = injector.get(IFileServiceClient);
+      const roots = [await fileServiceClient.getFileStat(URI.file(path.join(__dirname)).toString())];
+      workspaceService._onWorkspaceChanged.fire(roots as FileStat[]);
+    }));
 });
