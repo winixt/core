@@ -33,7 +33,7 @@ describe('ServerApp', () => {
     injector.disposeAll();
   });
 
-  test('start net server', async (done) => {
+  test('start net server', (done) => {
     const rpcListenPath = normalizedIpcHandlerPath('NODE-TEST', true);
     const app = new ServerApp({
       injector,
@@ -43,7 +43,6 @@ describe('ServerApp', () => {
       processCloseExitThreshold: 0,
     });
     const server = net.createServer();
-    await app.start(server);
 
     // server 的 connection 事件在测试环境下无法正常发送，只能跑一下执行
     server.listen(rpcListenPath, () => {
@@ -51,9 +50,10 @@ describe('ServerApp', () => {
         done();
       });
     });
+    app.start(server);
   });
 
-  test('start http server', async (done) => {
+  test('start http server', (done) => {
     const testPort = 9999;
     const koa = new Koa();
     const app = new ServerApp({
@@ -65,7 +65,6 @@ describe('ServerApp', () => {
       processCloseExitThreshold: 0,
     });
     const server = http.createServer(koa.callback());
-    await app.start(server);
 
     // server 的 connection 事件在测试环境下无法正常发送，只能跑一下执行
     server.listen(testPort, () => {
@@ -73,5 +72,6 @@ describe('ServerApp', () => {
         done();
       });
     });
+    app.start(server);
   });
 });

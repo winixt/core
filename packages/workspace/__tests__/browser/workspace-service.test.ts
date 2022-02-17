@@ -71,7 +71,7 @@ describe('WorkspaceService should be work while workspace was a single directory
   const mockWindowService = {
     openNewWindow: jest.fn(),
   };
-  beforeEach(async (done) => {
+  beforeEach(async () => {
     injector = createBrowserInjector([WorkspaceModule]);
 
     injector.overrideProviders(
@@ -112,7 +112,6 @@ describe('WorkspaceService should be work while workspace was a single directory
     workspaceService = injector.get(IWorkspaceService);
     workspaceService.init();
     await workspaceService.whenReady;
-    done();
   });
 
   afterEach(() => {
@@ -151,23 +150,21 @@ describe('WorkspaceService should be work while workspace was a single directory
     expect(workspaceService.onWorkspaceLocationChanged).toBeDefined();
   });
 
-  it('getMostRecentlyUsedWorkspace/setMostRecentlyUsedWorkspace method should be work', async (done) => {
+  it('getMostRecentlyUsedWorkspace/setMostRecentlyUsedWorkspace method should be work', async () => {
     const newWorkspaceUri = workspaceUri.parent.resolve('new_folder');
     await workspaceService.setMostRecentlyUsedWorkspace(newWorkspaceUri.toString());
     const recent = await workspaceService.getMostRecentlyUsedWorkspace();
     expect(recent).toBe(newWorkspaceUri.toString());
-    done();
   });
 
-  it('getMostRecentlyUsedCommands/setMostRecentlyUsedCommand method should be work', async (done) => {
+  it('getMostRecentlyUsedCommands/setMostRecentlyUsedCommand method should be work', async () => {
     const command = 'command';
     await workspaceService.setMostRecentlyUsedCommand(command);
     const recent = await workspaceService.getMostRecentlyUsedCommands();
     expect(recent).toStrictEqual([command]);
-    done();
   });
 
-  it('open method should be work', async (done) => {
+  it('open method should be work', async () => {
     const newWorkspaceUri = workspaceUri.parent.resolve('new_folder');
     mockFileSystem.getFileStat.mockResolvedValue({
       uri: newWorkspaceUri.toString(),
@@ -178,10 +175,9 @@ describe('WorkspaceService should be work while workspace was a single directory
     expect(mockClientApp.fireOnReload).toBeCalledWith(true);
     await workspaceService.open(newWorkspaceUri);
     expect(mockWindowService.openNewWindow).toBeCalledTimes(1);
-    done();
   });
 
-  it('addRoot method should be work', async (done) => {
+  it('addRoot method should be work', async () => {
     const newWorkspaceUri = workspaceUri.resolve('new_folder');
     // re-set _workspace cause the workspace would be undefined in some cases
     injector.mock(IWorkspaceService, '_workspace', {
@@ -212,10 +208,9 @@ describe('WorkspaceService should be work while workspace was a single directory
     mockFileSystem.setContent.mockImplementation((stat) => stat);
     await workspaceService.addRoot(newWorkspaceUri);
     expect(mockFileSystem.setContent).toBeCalledTimes(2);
-    done();
   });
 
-  it('removeRoots method should be work', async (done) => {
+  it('removeRoots method should be work', async () => {
     const newWorkspaceUri = workspaceUri.resolve('new_folder');
     injector.mock(
       IFileServiceClient,
@@ -237,28 +232,25 @@ describe('WorkspaceService should be work while workspace was a single directory
     });
     await workspaceService.removeRoots([newWorkspaceUri]);
     expect(mockFileSystem.setContent).toBeCalledTimes(1);
-    done();
   });
 
-  it('containsSome method should be work', async (done) => {
+  it('containsSome method should be work', async () => {
     injector.mock(IWorkspaceService, '_roots', [workspaceStat]);
     injector.mock(IWorkspaceService, 'opened', true);
     mockFileSystem.exists.mockResolvedValue(true as never);
     const result = await workspaceService.containsSome(['test.js']);
     // always return true
     expect(result).toBeTruthy();
-    done();
   });
 
-  it('getWorkspaceRootUri method should be work', async (done) => {
+  it('getWorkspaceRootUri method should be work', async () => {
     const newWorkspaceUri = workspaceUri.resolve('new_folder');
     injector.mock(IWorkspaceService, '_roots', [workspaceStat]);
     const result = workspaceService.getWorkspaceRootUri(newWorkspaceUri);
     expect(result?.toString()).toBe(workspaceUri.toString());
-    done();
   });
 
-  it('asRelativePath method should be work', async (done) => {
+  it('asRelativePath method should be work', async () => {
     // file://authority/path 为 unc path 其 fsPath 为 //authority/path
     // @link https://www3.trustwave.com/support/kb/KnowledgebaseArticle10870.aspx
     const workspaceUri = new URI('file:///root');
@@ -275,7 +267,5 @@ describe('WorkspaceService should be work while workspace was a single directory
     expect(await workspaceService.asRelativePath(newWorkspaceUri.codeUri.fsPath)).toBe('new_folder');
     const outWorkspacePath = '/other/test.js';
     expect(await workspaceService.asRelativePath(outWorkspacePath)).toBe(outWorkspacePath);
-
-    done();
   });
 });

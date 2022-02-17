@@ -200,7 +200,7 @@ describe('icon theme test', () => {
     expect(infos.length).toEqual(1);
   });
 
-  it('should be able to apply default & registed icon theme', async (done) => {
+  it('should be able to apply default & registed icon theme', async () => {
     const bodyNode = document.getElementsByTagName('body')[0];
     await service.applyTheme('error-icon-theme-id');
     expect(service.currentThemeId).not.toEqual('error-icon-theme-id');
@@ -210,7 +210,6 @@ describe('icon theme test', () => {
     expect(bodyNode.classList.contains('default-file-icons')).toBeTruthy();
     const iconThemeNode = document.getElementById('icon-style')!;
     expect(iconThemeNode.innerHTML.indexOf('.vs .show-file-icons .folder-icon')).toBeGreaterThan(-1);
-    done();
   });
 
   it('current icon theme data should be correct', () => {
@@ -272,7 +271,7 @@ describe('icon theme test', () => {
     expect(extraIconNode!.innerHTML.includes(randomIconClass1)).toBeTruthy();
   });
 
-  it('should be able to load font icons', async (done) => {
+  it('should be able to load font icons', async () => {
     service.registerIconThemes(
       [
         {
@@ -286,6 +285,5 @@ describe('icon theme test', () => {
     );
     await service.applyTheme('test-font-icon-theme');
     expect(service.currentThemeId).toEqual('test-font-icon-theme');
-    done();
   });
 });

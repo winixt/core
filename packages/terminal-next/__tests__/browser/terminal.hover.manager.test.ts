@@ -77,7 +77,7 @@ describe('terminal.environment.service', () => {
     terminalHoverManagerService = injector.get(ITerminalHoverManagerService);
   });
 
-  it('TerminalHoverManagerService#init', async (done) => {
+  it('TerminalHoverManagerService#init', async () => {
     const _xterm = new Terminal();
     const lines = createBufferLineArray([
       { text: 'AA http://t', width: 11 },
@@ -159,6 +159,5 @@ describe('terminal.environment.service', () => {
       'test',
       (text) => link.activate(undefined, text),
     );
-    done();
   });
 });

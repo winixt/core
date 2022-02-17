@@ -74,7 +74,7 @@ describe('OpenedEditorModelService should be work', () => {
     refresh: jest.fn(),
     contextMenuContextKeyService: new MockContextKeyService().createScoped({} as any),
   };
-  beforeEach(async (done) => {
+  beforeEach(async () => {
     injector = createBrowserInjector([]);
 
     injector.overrideProviders(
@@ -127,7 +127,6 @@ describe('OpenedEditorModelService should be work', () => {
     openedEditorService = injector.get(OpenedEditorService);
     openedEditorModelService = injector.get(OpenedEditorModelService);
     await openedEditorModelService.whenReady;
-    done();
   });
 
   afterEach(() => {

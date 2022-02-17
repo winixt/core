@@ -93,7 +93,7 @@ describe('workspace edit tests', () => {
     },
   );
 
-  it('resource edit tests', async (done) => {
+  it('resource edit tests', async () => {
     const service: IWorkspaceEditService = injector.get(IWorkspaceEditService);
     await service.apply({
       edits: [
@@ -144,11 +144,9 @@ describe('workspace edit tests', () => {
     expect(model.pushStackElement).toBeCalled();
 
     expect(injector.get(WorkbenchEditorService).open).toBeCalled();
-
-    done();
   });
 
-  it('file edit tests', async (done) => {
+  it('file edit tests', async () => {
     const service: IWorkspaceEditService = injector.get(IWorkspaceEditService);
     const fileServiceClient = injector.get<IFileServiceClient>(IFileServiceClient);
     const workspaceFileService: IWorkspaceFileService = injector.get(IWorkspaceFileService);
@@ -263,11 +261,9 @@ describe('workspace edit tests', () => {
     await service.apply({
       edits: [createEdit3],
     });
-
-    done();
   });
 
-  it('monaco bulk edit test', async (done) => {
+  it('monaco bulk edit test', async () => {
     const monacoBulkEditService: MonacoBulkEditService = injector.get(MonacoBulkEditService);
     const fileServiceClient = injector.get<IFileServiceClient>(IFileServiceClient);
 
@@ -305,11 +301,9 @@ describe('workspace edit tests', () => {
 
     expect(model.pushEditOperations).toBeCalled();
     expect(model.pushStackElement).toBeCalled();
-
-    done();
   });
 
-  it('monaco bulk edit preview test', async (done) => {
+  it('monaco bulk edit preview test', async () => {
     const mockedPreviewFn = jest.fn(
       (edits: ResourceEdit[], options?: IBulkEditOptions): Promise<ResourceEdit[]> => Promise.resolve(edits),
     );
@@ -341,6 +335,5 @@ describe('workspace edit tests', () => {
     expect(injector.get(WorkbenchEditorService).open).toBeCalled();
 
     expect(mockedPreviewFn).toBeCalled();
-    done();
   });
 });
