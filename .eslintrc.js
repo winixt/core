@@ -5,8 +5,23 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-import'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    // 如果有勇气的话可以开启它的推荐配置
+    // 'plugin:eslint-plugin-import/recommended',
+    // 'plugin:eslint-plugin-import/typescript',
+    'prettier',
+  ],
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+      },
+    },
+    'import/internal-regex': '^@opensumi/',
+  },
   rules: {
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/array-type': 'off',
@@ -132,5 +147,44 @@ module.exports = {
     'no-prototype-builtins': 'warn',
     'prefer-rest-params': 'warn',
     'no-control-regex': 'warn',
+    // 让 import 中的内部包和外部包分组，看起来更美观
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'unknown'],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        'newlines-between': 'always',
+      },
+    ],
+    'import/no-restricted-paths': [
+      'error',
+      {
+        zones: [
+          // 禁止 browser 引用 node 下模块
+          {
+            target: './packages/**/*/browser/**/*',
+            from: './packages/**/*/node/**/*',
+          },
+          // 禁止 node 引用 browser 下模块
+          {
+            target: './packages/**/*/node/**/*',
+            from: './packages/**/*/browser/**/*',
+          },
+          // 禁止 common 引用 node 下模块
+          {
+            target: './packages/**/*/common/**/*',
+            from: './packages/**/*/node/**/*',
+          },
+          // 禁止 common 引用 browser 下模块
+          {
+            target: './packages/**/*/common/**/*',
+            from: './packages/**/*/browser/**/*',
+          },
+        ],
+      },
+    ],
   },
 };
