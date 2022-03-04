@@ -23,7 +23,9 @@ import { FileDecorationsService } from '@opensumi/ide-decoration/lib/browser/dec
 import { WorkbenchEditorService } from '@opensumi/ide-editor';
 import { FileStat, FileServicePath, IDiskFileProvider, IFileServiceClient } from '@opensumi/ide-file-service';
 import { FileServiceClient } from '@opensumi/ide-file-service/lib/browser/file-service-client';
+// eslint-disable-next-line import/no-restricted-paths
 import { FileSystemNodeOptions, FileService } from '@opensumi/ide-file-service/lib/node';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { IDialogService, IMessageService } from '@opensumi/ide-overlay';
 import { IThemeService } from '@opensumi/ide-theme';
@@ -40,7 +42,6 @@ import { FileTreeService } from '../../src/browser/file-tree.service';
 import { FileTreeModelService } from '../../src/browser/services/file-tree-model.service';
 import { IFileTreeAPI, IFileTreeService } from '../../src/common';
 import { Directory, File } from '../../src/common/file-tree-node.define';
-
 
 function sleep(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));

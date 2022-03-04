@@ -1,7 +1,8 @@
 import { Injectable } from '@opensumi/di';
 import { URI, Emitter, MaybeNull, Event } from '@opensumi/ide-core-common';
 
-import { IEditorGroup } from '../../browser';
+// eslint-disable-next-line import/no-restricted-paths
+import type { IEditorGroup } from '../../browser';
 import { WorkbenchEditorService, IResourceOpenOptions, IUntitledOptions, IOpenResourceResult } from '../editor';
 import { IResource } from '../resource';
 

@@ -76,7 +76,9 @@ import {
   FileServiceClient,
   BrowserFileSystemRegistryImpl,
 } from '@opensumi/ide-file-service/lib/browser/file-service-client';
+// eslint-disable-next-line import/no-restricted-paths
 import { FileService, FileSystemNodeOptions } from '@opensumi/ide-file-service/lib/node';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { MonacoService } from '@opensumi/ide-monaco';
 import MonacoServiceImpl from '@opensumi/ide-monaco/lib/browser/monaco.service';

@@ -8,6 +8,7 @@ import { URI, FileUri, AppConfig, Disposable, STORAGE_SCHEMA, ILoggerManagerClie
 import { createBrowserInjector } from '@opensumi/ide-dev-tool/src/injector-helper';
 import { IFileServiceClient, IDiskFileProvider } from '@opensumi/ide-file-service';
 import { FileServiceClient } from '@opensumi/ide-file-service/lib/browser/file-service-client';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { Storage } from '@opensumi/ide-storage/lib/browser/storage';
 import { DatabaseStorageContribution } from '@opensumi/ide-storage/lib/browser/storage.contribution';

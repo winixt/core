@@ -11,7 +11,8 @@ import {
 } from '@opensumi/ide-core-browser';
 import { RecycleTreeProps } from '@opensumi/ide-core-browser/lib/components';
 import { IEditor } from '@opensumi/ide-editor';
-import { IEditorDocumentModel } from '@opensumi/ide-editor/lib/browser';
+// eslint-disable-next-line import/no-restricted-paths
+import type { IEditorDocumentModel } from '@opensumi/ide-editor/lib/browser';
 
 type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 

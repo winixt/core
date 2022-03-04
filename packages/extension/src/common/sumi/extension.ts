@@ -2,8 +2,10 @@ import { IMenubarItem, ISubmenuItem } from '@opensumi/ide-core-browser/lib/menu/
 import { ISumiMenuExtendInfo } from '@opensumi/ide-core-common';
 import { ThemeType } from '@opensumi/ide-theme';
 
-import { ITabBarViewContribution } from '../../browser/sumi-browser/types';
-import { IToolbarButtonContribution, IToolbarSelectContribution } from '../../browser/sumi/types';
+// eslint-disable-next-line import/no-restricted-paths
+import type { ITabBarViewContribution } from '../../browser/sumi-browser/types';
+// eslint-disable-next-line import/no-restricted-paths
+import type { IToolbarButtonContribution, IToolbarSelectContribution } from '../../browser/sumi/types';
 import { IExtensionContributions } from '../vscode/extension';
 
 export interface IContributeMenubarItem extends Omit<IMenubarItem, 'label'> {

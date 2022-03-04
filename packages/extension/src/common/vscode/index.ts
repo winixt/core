@@ -1,11 +1,11 @@
 import type vscode from 'vscode';
 
-
 import { createMainContextProxyIdentifier, createExtHostContextProxyIdentifier } from '@opensumi/ide-connection';
 import { Emitter, IExtensionProps } from '@opensumi/ide-core-common';
 
 import { IExtension, IExtensionHostService } from '..';
-import { MainThreadWindowState } from '../../browser/vscode/api/main.thread.window-state';
+// eslint-disable-next-line import/no-restricted-paths
+import type { MainThreadWindowState } from '../../browser/vscode/api/main.thread.window-state';
 import { ExtHostFileSystem } from '../../hosted/api/vscode/ext.host.file-system';
 import { ExtHostFileSystemEvent } from '../../hosted/api/vscode/ext.host.file-system-event';
 import { ExtHostFileSystemInfo } from '../../hosted/api/vscode/ext.host.file-system-info';

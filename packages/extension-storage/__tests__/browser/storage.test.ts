@@ -9,6 +9,7 @@ import { AppConfig } from '@opensumi/ide-core-node';
 import { IExtensionStorageServer, IExtensionStoragePathServer } from '@opensumi/ide-extension-storage';
 import { FileStat, IDiskFileProvider } from '@opensumi/ide-file-service';
 import { FileServiceClient } from '@opensumi/ide-file-service/lib/browser/file-service-client';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 
 import { createBrowserInjector } from '../../../../tools/dev-tool/src/injector-helper';

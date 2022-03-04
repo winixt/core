@@ -22,6 +22,7 @@ import { EditorCollectionService } from '@opensumi/ide-editor/lib/browser';
 import { IFileServiceClient, IDiskFileProvider } from '@opensumi/ide-file-service';
 import { FileServiceClientModule } from '@opensumi/ide-file-service/lib/browser';
 import { FileServiceContribution } from '@opensumi/ide-file-service/lib/browser/file-service-contribution';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { IMessageService } from '@opensumi/ide-overlay';
 import { IUserStorageService } from '@opensumi/ide-preferences';
@@ -34,7 +35,6 @@ import { WorkspaceService } from '@opensumi/ide-workspace/lib/browser/workspace-
 import { createBrowserInjector } from '../../../../tools/dev-tool/src/injector-helper';
 import { MockInjector } from '../../../../tools/dev-tool/src/mock-injector';
 import { MockContextKeyService } from '../../../monaco/__mocks__/monaco.context-key.service';
-
 
 @Injectable()
 export class MockLoggerManagerClient {

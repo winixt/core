@@ -4,12 +4,13 @@ import temp from 'temp';
 import { FileUri } from '@opensumi/ide-core-common';
 import { UTF8 } from '@opensumi/ide-core-common/lib/encoding';
 import { createBrowserInjector } from '@opensumi/ide-dev-tool/src/injector-helper';
+// eslint-disable-next-line import/no-restricted-paths
 import { FileService } from '@opensumi/ide-file-service/lib/node';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 
 import { IFileServiceClient, FileServicePath, IDiskFileProvider } from '../../src';
 import { FileServiceClientModule } from '../../src/browser';
-
 
 describe('FileServiceClient should be work', () => {
   const injector = createBrowserInjector([FileServiceClientModule]);

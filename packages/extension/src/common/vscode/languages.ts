@@ -19,7 +19,8 @@ import { IMarkerData, IRange, Uri, UriComponents } from '@opensumi/ide-core-comm
 import { IEvaluatableExpression } from '@opensumi/ide-debug/lib/common/evaluatable-expression';
 import { InlineValueContext, InlineValue } from '@opensumi/ide-debug/lib/common/inline-values';
 import { ILanguageStatus, ISingleEditOperation } from '@opensumi/ide-editor';
-import { ITextModel } from '@opensumi/ide-monaco/lib/browser/monaco-api/types';
+// eslint-disable-next-line import/no-restricted-paths
+import type { ITextModel } from '@opensumi/ide-monaco/lib/browser/monaco-api/types';
 import { Range as MonacoRange } from '@opensumi/monaco-editor-core/esm/vs/editor/common/core/range';
 import type {
   CodeActionContext,

@@ -24,6 +24,7 @@ import { MockLoggerManageClient } from '@opensumi/ide-core-browser/__mocks__/log
 import { IFileServiceClient, IDiskFileProvider } from '@opensumi/ide-file-service';
 import { FileServiceClientModule } from '@opensumi/ide-file-service/lib/browser';
 import { FileServiceContribution } from '@opensumi/ide-file-service/lib/browser/file-service-contribution';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { PreferencesModule } from '@opensumi/ide-preferences/lib/browser';
 import { UserStorageContribution } from '@opensumi/ide-preferences/lib/browser/userstorage';

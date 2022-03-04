@@ -3,7 +3,8 @@ import { IDisposable, Event, URI, TaskIdentifier, Uri, Deferred } from '@opensum
 import { UriComponents } from '@opensumi/ide-editor';
 import { TerminalOptions } from '@opensumi/ide-terminal-next/lib/common';
 
-import { ProblemCollector } from '../browser/problem-collector';
+// eslint-disable-next-line import/no-restricted-paths
+import type { ProblemCollector } from '../browser/problem-collector';
 
 import { Task, ConfiguringTask, ContributedTask, TaskSet, KeyedTaskIdentifier, TaskEvent } from './task';
 

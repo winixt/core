@@ -21,6 +21,7 @@ import { MockLogger } from '@opensumi/ide-core-browser/__mocks__/logger';
 import { IDiskFileProvider, IFileServiceClient } from '@opensumi/ide-file-service';
 import { FileServiceClientModule } from '@opensumi/ide-file-service/lib/browser';
 import { FileServiceContribution } from '@opensumi/ide-file-service/lib/browser/file-service-contribution';
+// eslint-disable-next-line import/no-restricted-paths
 import { DiskFileSystemProvider } from '@opensumi/ide-file-service/lib/node/disk-file-system.provider';
 import { KeymapsModule } from '@opensumi/ide-keymaps/lib/browser';
 import { KeymapService } from '@opensumi/ide-keymaps/lib/browser/keymaps.service';
