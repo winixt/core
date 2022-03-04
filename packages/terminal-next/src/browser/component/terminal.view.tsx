@@ -1,7 +1,8 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
+
 import { useInjectable, getIcon } from '@opensumi/ide-core-browser';
-import ResizeView, { ResizeDirection } from './resize.view';
+
 import {
   ITerminalController,
   ITerminalGroupViewService,
@@ -11,6 +12,8 @@ import {
   ITerminalNetwork,
   ITerminalError,
 } from '../../common';
+
+import ResizeView, { ResizeDirection } from './resize.view';
 import TerminalWidget from './terminal.widget';
 
 import 'xterm/css/xterm.css';

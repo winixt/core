@@ -14,8 +14,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { SymbolInformation } from 'vscode-languageserver-types';
 import type vscode from 'vscode';
+import { SymbolInformation } from 'vscode-languageserver-types';
+
 import * as Converter from '../../../../common/vscode/converter';
 
 export class WorkspaceSymbolAdapter {

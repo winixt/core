@@ -6,6 +6,7 @@ import {
   StatusBarHoverCommand,
 } from '@opensumi/ide-core-common';
 import { ITextModel } from '@opensumi/ide-monaco/lib/browser/monaco-api/types';
+
 import { LanguageSelector } from './language';
 
 export const ILanguageStatusService = Symbol('ILanguageStatusService');

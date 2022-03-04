@@ -1,4 +1,5 @@
 import { Event } from '@opensumi/ide-core-common';
+
 import { IToolbarButtonContribution, IToolbarSelectContribution } from '../../browser/sumi/types';
 
 export interface IToolbarButtonActionHandle {

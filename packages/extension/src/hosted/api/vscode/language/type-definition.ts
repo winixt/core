@@ -15,10 +15,12 @@
  ********************************************************************************/
 
 import type vscode from 'vscode';
+
 import { Uri } from '@opensumi/ide-core-common';
+
 import { ExtensionDocumentDataManager } from '../../../../common/vscode';
-import * as types from '../../../../common/vscode/ext-types';
 import * as Converter from '../../../../common/vscode/converter';
+import * as types from '../../../../common/vscode/ext-types';
 import { Definition, DefinitionLink, Location, Position } from '../../../../common/vscode/model.api';
 import { isDefinitionLinkArray, isLocationArray } from '../../../../common/vscode/utils';
 

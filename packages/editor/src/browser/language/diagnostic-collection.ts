@@ -1,7 +1,10 @@
 import * as monaco from '@opensumi/monaco-editor-core/esm/vs/editor/editor.api';
+
 import IModel = monaco.editor.IModel;
 import IMarkerData = monaco.editor.IMarkerData;
+
 import { DiagnosticCollection, Diagnostic, asDiagnostics } from '../../common';
+
 import { DisposableCollection, Disposable, IDisposable } from '@opensumi/ide-core-common';
 
 export class MonacoDiagnosticCollection implements DiagnosticCollection {

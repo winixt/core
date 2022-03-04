@@ -1,4 +1,3 @@
-import type { RenderLineNumbersType as MonacoRenderLineNumbersType } from '@opensumi/monaco-editor-core/esm/vs/editor/common/config/editorOptions';
 import { ISelection, IRange, ILineChange } from '@opensumi/ide-core-common';
 import {
   IUndoStopOptions,
@@ -7,8 +6,10 @@ import {
   IDecorationApplyOptions,
   IResourceOpenOptions,
 } from '@opensumi/ide-editor';
-import { ViewColumn } from './enums';
 import { EndOfLineSequence } from '@opensumi/ide-monaco/lib/browser/monaco-api/types';
+import type { RenderLineNumbersType as MonacoRenderLineNumbersType } from '@opensumi/monaco-editor-core/esm/vs/editor/common/config/editorOptions';
+
+import { ViewColumn } from './enums';
 export * from './custom-editor';
 export * from './enums';
 export interface IExtensionHostEditorService {

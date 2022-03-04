@@ -1,9 +1,11 @@
 import { IJSONSchemaMap } from '@opensumi/ide-core-browser';
 import { IDisposable, Event, URI, TaskIdentifier, Uri, Deferred } from '@opensumi/ide-core-common';
-import { Task, ConfiguringTask, ContributedTask, TaskSet, KeyedTaskIdentifier, TaskEvent } from './task';
 import { UriComponents } from '@opensumi/ide-editor';
-import { ProblemCollector } from '../browser/problem-collector';
 import { TerminalOptions } from '@opensumi/ide-terminal-next/lib/common';
+
+import { ProblemCollector } from '../browser/problem-collector';
+
+import { Task, ConfiguringTask, ContributedTask, TaskSet, KeyedTaskIdentifier, TaskEvent } from './task';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TaskMap {}

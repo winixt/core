@@ -1,8 +1,9 @@
 const path = require('path');
 
 const { createWebpackConfig } = require('@opensumi/ide-dev-tool/src/webpack');
-const webpack = require('webpack');
+
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const baseDir = path.join(__dirname, 'entry/web-lite');
 

@@ -14,17 +14,21 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import type { CodeActionContext, WorkspaceEdit } from '@opensumi/monaco-editor-core/esm/vs/editor/common/modes';
 import type vscode from 'vscode';
+
 import { Uri as URI, Cache } from '@opensumi/ide-core-common';
+import { DisposableStore } from '@opensumi/ide-core-common';
+import type { CodeActionContext, WorkspaceEdit } from '@opensumi/monaco-editor-core/esm/vs/editor/common/modes';
+
+import { ExtensionDocumentDataManager, ICodeActionDto, ICodeActionListDto } from '../../../../common/vscode';
+import * as Converter from '../../../../common/vscode/converter';
 import { CodeActionKind } from '../../../../common/vscode/ext-types';
 import { Selection, Range, ChainedCacheId, IWorkspaceEditDto } from '../../../../common/vscode/model.api';
-import * as Converter from '../../../../common/vscode/converter';
-import { createToken } from './util';
-import { ExtensionDocumentDataManager, ICodeActionDto, ICodeActionListDto } from '../../../../common/vscode';
-import { Diagnostics } from './diagnostics';
 import { CommandsConverter } from '../ext.host.command';
-import { DisposableStore } from '@opensumi/ide-core-common';
+
+import { Diagnostics } from './diagnostics';
+import { createToken } from './util';
+
 
 export class CodeActionAdapter {
   private readonly _cache = new Cache<vscode.CodeAction | vscode.Command>('CodeAction');

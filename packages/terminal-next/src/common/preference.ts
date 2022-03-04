@@ -131,7 +131,6 @@ export const enum CodeTerminalSettingId {
 }
 
 import { localize, isElectronRenderer, isWindows } from '@opensumi/ide-core-common';
-
 import { PreferenceSchema } from '@opensumi/ide-core-common/lib/preferences';
 
 const shellDeprecationMessageLinux = localize(

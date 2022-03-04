@@ -1,4 +1,6 @@
+import type { ForkOptions } from 'child_process';
 import net from 'net';
+
 import {
   RPCService,
   RPCServiceCenter,
@@ -7,6 +9,9 @@ import {
   IRPCProtocol,
   RPCProtocol,
 } from '@opensumi/ide-connection';
+import { Emitter, Disposable, IDisposable, getDebugLogger } from '@opensumi/ide-core-node';
+
+import { IExtensionHostManager } from '../common';
 import {
   IExtHostProxyRPCService,
   IExtHostProxy,
@@ -17,10 +22,7 @@ import {
   EXT_SERVER_IDENTIFIER,
   EXT_HOST_PROXY_SERVER_PROT,
 } from '../common/ext.host.proxy';
-import { Emitter, Disposable, IDisposable, getDebugLogger } from '@opensumi/ide-core-node';
 import { ExtensionHostManager } from '../node/extension.host.manager';
-import { IExtensionHostManager } from '../common';
-import type { ForkOptions } from 'child_process';
 
 class ExtHostProxyRPCService extends RPCService implements IExtHostProxyRPCService {
   private extensionHostManager: IExtensionHostManager;

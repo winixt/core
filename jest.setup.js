@@ -1,5 +1,6 @@
-const { JSDOM } = require('jsdom');
 const { TextDecoder, TextEncoder } = require('util');
+
+const { JSDOM } = require('jsdom');
 
 const jsdom = new JSDOM('<div id="main"></div>', {
   // https://github.com/jsdom/jsdom#basic-options

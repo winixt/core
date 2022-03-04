@@ -1,6 +1,7 @@
 import '@opensumi/ide-i18n/lib/browser';
-import { SlotLocation } from '@opensumi/ide-core-browser';
 import * as React from 'react';
+
+import { SlotLocation } from '@opensumi/ide-core-browser';
 
 import { CommonBrowserModules } from './common-modules';
 import { renderApp } from './render-app';

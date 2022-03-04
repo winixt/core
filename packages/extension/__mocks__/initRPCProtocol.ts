@@ -1,6 +1,7 @@
 import net from 'net';
-import { RPCProtocol } from '@opensumi/ide-connection/lib/common/rpcProtocol';
+
 import { createSocketConnection, RPCServiceCenter, initRPCService } from '@opensumi/ide-connection';
+import { RPCProtocol } from '@opensumi/ide-connection/lib/common/rpcProtocol';
 
 import { KT_PROCESS_SOCK_OPTION_KEY } from '../src/common';
 

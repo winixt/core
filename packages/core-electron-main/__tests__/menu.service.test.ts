@@ -1,5 +1,7 @@
 import { mockService } from '../../../tools/dev-tool/src/mock-injector';
+
 import { EventEmitter } from 'events';
+
 import { Injector } from '@opensumi/di';
 
 const mockedWindows = new Map<number, any>();
@@ -27,9 +29,10 @@ jest.mock('electron', () => ({
   },
 }));
 
-import { ElectronMainMenuService } from '../src/bootstrap/services/menu';
 import { BrowserWindow, Menu } from 'electron';
+
 import { isWindows } from '../../core-node/lib';
+import { ElectronMainMenuService } from '../src/bootstrap/services/menu';
 
 async function delay(ms: number) {
   return new Promise<void>((resolve) => {

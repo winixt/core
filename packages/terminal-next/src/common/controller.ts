@@ -1,15 +1,18 @@
+import { IContextKeyService } from '@opensumi/ide-core-browser';
 import { Event, Disposable, Deferred, IDisposable } from '@opensumi/ide-core-common';
+
+import type { ILinkHoverTargetOptions } from '../browser/links/link-manager';
+
+import { ITerminalClient, ITerminalExitEvent, ITerminalExternalLinkProvider } from './client';
 import {
   ITerminalLaunchError,
   ITerminalProcessExtHostProxy,
   IStartExtensionTerminalRequest,
   ITerminalProfileProvider,
 } from './extension';
-import { IWidgetGroup, IWidget } from './resize';
-import { ITerminalClient, ITerminalExitEvent, ITerminalExternalLinkProvider } from './client';
 import { TerminalOptions, ITerminalInfo } from './pty';
-import { IContextKeyService } from '@opensumi/ide-core-browser';
-import type { ILinkHoverTargetOptions } from '../browser/links/link-manager';
+import { IWidgetGroup, IWidget } from './resize';
+
 
 export interface ITerminalExternalClient {
   readonly id: string;

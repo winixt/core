@@ -1,6 +1,7 @@
-import React from 'react';
-import { Dropdown } from '../dropdown';
 import classNames from 'classnames';
+import React from 'react';
+
+import { Dropdown } from '../dropdown';
 
 import './style.less';
 import { Icon, getKaitianIcon, DefaultIconKeys } from '../icon';
