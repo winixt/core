@@ -1,8 +1,8 @@
-import { mockService } from '../../../tools/dev-tool/src/mock-injector';
-
 import { EventEmitter } from 'events';
 
 import { Injector } from '@opensumi/di';
+
+import { mockService } from '../../../tools/dev-tool/src/mock-injector';
 
 const mockedWindows = new Map<number, any>();
 
@@ -29,6 +29,7 @@ jest.mock('electron', () => ({
   },
 }));
 
+// eslint-disable-next-line import/order
 import { BrowserWindow, Menu } from 'electron';
 
 import { isWindows } from '../../core-node/lib';

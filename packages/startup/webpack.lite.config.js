@@ -1,10 +1,11 @@
 const path = require('path');
 
-const { createWebpackConfig } = require('@opensumi/ide-dev-tool/src/webpack');
-
 const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const { createWebpackConfig } = require('@opensumi/ide-dev-tool/src/webpack');
+
 const baseDir = path.join(__dirname, 'entry/web-lite');
 
 module.exports = createWebpackConfig(baseDir, path.join(baseDir, 'app.tsx'), {

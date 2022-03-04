@@ -10,21 +10,15 @@ import { PeekViewWidget } from '@opensumi/ide-monaco-enhance/lib/browser/peek-vi
 import type { ICodeEditor } from '@opensumi/ide-monaco/lib/browser/monaco-api/types';
 import { renderMarkdown } from '@opensumi/monaco-editor-core/esm/vs/base/browser/markdownRenderer';
 
-import { TestMessageType } from '../../common/testCollection';
-
-import { TestDto } from './test-output-peek';
-import './test-peek-widget.less';
-
-import { TestMessageContainer } from './test-message-container';
-import { TestingPeekMessageServiceImpl } from './test-peek-message.service';
-
 import { TestPeekMessageToken } from '../../common';
-
-import { TestTreeContainer } from './test-tree-container';
-
-
+import { TestMessageType } from '../../common/testCollection';
 import { firstLine, hintMessagePeekHeight } from '../../common/testingStates';
 
+import { TestMessageContainer } from './test-message-container';
+import { TestDto } from './test-output-peek';
+import './test-peek-widget.less';
+import { TestingPeekMessageServiceImpl } from './test-peek-message.service';
+import { TestTreeContainer } from './test-tree-container';
 
 @Injectable({ multiple: true })
 export class TestingOutputPeek extends PeekViewWidget {

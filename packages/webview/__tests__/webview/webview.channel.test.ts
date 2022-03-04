@@ -1,5 +1,4 @@
 import { mockElectronRenderer } from '@opensumi/ide-core-common/lib/mocks/electron/browserMock';
-
 mockElectronRenderer();
 import { MockedElectronIpcRenderer } from '@opensumi/ide-core-common/lib/mocks/electron/ipcRenderer';
 

@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import React from 'react';
 
 import { Dropdown } from '../dropdown';
+import { Icon, getKaitianIcon, DefaultIconKeys } from '../icon';
 
 import './style.less';
-import { Icon, getKaitianIcon, DefaultIconKeys } from '../icon';
 
 export type ButtonType = 'primary' | 'secondary' | 'ghost' | 'danger' | 'link' | 'icon' | 'default';
 

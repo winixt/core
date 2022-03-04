@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/order
 import { setLocale } from '@opensumi/ide-monaco/lib/browser/monaco-localize';
 // 这里建议传实际 preferences 的设置项
 // 如果不传则默认会根据 PreferenceScope 的优先级从 LocalStorage 取值

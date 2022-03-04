@@ -14,10 +14,9 @@ import {
 } from '../../common';
 
 import ResizeView, { ResizeDirection } from './resize.view';
-import TerminalWidget from './terminal.widget';
-
 import 'xterm/css/xterm.css';
 import styles from './terminal.module.less';
+import TerminalWidget from './terminal.widget';
 
 export default observer(() => {
   const controller = useInjectable<ITerminalController>(ITerminalController);

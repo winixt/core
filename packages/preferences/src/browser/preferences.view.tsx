@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import debounce = require('lodash.debounce');
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
@@ -26,9 +27,7 @@ import { PreferenceSettingsService } from './preference-settings.service';
 import { NextPreferenceItem } from './preferenceItem.view';
 import styles from './preferences.module.less';
 
-
 import './index.less';
-import debounce = require('lodash.debounce');
 
 const WorkspaceScope = {
   id: PreferenceScope.Workspace,

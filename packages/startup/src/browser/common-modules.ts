@@ -14,9 +14,7 @@ import { FileTreeNextModule } from '@opensumi/ide-file-tree-next/lib/browser';
 import { KeymapsModule } from '@opensumi/ide-keymaps/lib/browser';
 import { LogModule } from '@opensumi/ide-logs/lib/browser';
 import { MainLayoutModule } from '@opensumi/ide-main-layout/lib/browser';
-
 // import { Terminal2Module } from '@opensumi/ide-terminal2/lib/browser';
-
 import { MarkdownModule } from '@opensumi/ide-markdown';
 import { MarkersModule } from '@opensumi/ide-markers/lib/browser';
 import { MenuBarModule } from '@opensumi/ide-menu-bar/lib/browser';

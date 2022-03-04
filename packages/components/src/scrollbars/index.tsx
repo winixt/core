@@ -1,8 +1,9 @@
 import cls from 'classnames';
+import throttle from 'lodash/throttle';
 import React from 'react';
 import { Scrollbars as CustomScrollbars } from 'react-custom-scrollbars';
+
 import './styles.less';
-import throttle from 'lodash/throttle';
 
 export interface ICustomScrollbarProps {
   forwardedRef?: any;

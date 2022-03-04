@@ -11,7 +11,6 @@ import { TextmateLanguageGrammarContribution } from './grammar/index.contributio
 // import { LanguageServiceContribution } from './language-service/language.contribution';
 // import { LsifServiceImpl } from './language-service/lsif-service';
 // import { ILsifService } from './language-service/lsif-service/base';
-
 import { BrowserCommonServer } from './overrides/browser-common-server';
 import { BrowserFileSchemeModule } from './overrides/browser-file-scheme';
 import { MockCredentialService } from './overrides/mock-credential.service';

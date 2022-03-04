@@ -1,3 +1,5 @@
+import net from 'net';
+
 import {
   SocketMessageReader,
   SocketMessageWriter,
@@ -7,8 +9,6 @@ import {
 
 export { SocketMessageReader, SocketMessageWriter };
 import { RPCProxy, NOTREGISTERMETHOD } from './proxy';
-
-import net from 'net';
 
 export type RPCServiceMethod = (...args: any[]) => any;
 export type ServiceProxy = any;
