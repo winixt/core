@@ -1,12 +1,7 @@
-import {
-  RPCServiceCenter,
-  initRPCService,
-  WSChannelHandler,
-  createSocketConnection,
-  RPCMessageConnection,
-} from '@opensumi/ide-connection';
-import { createWebSocketConnection } from '@opensumi/ide-connection/lib/common/message';
 import { Injector, Provider } from '@opensumi/di';
+import { RPCServiceCenter, initRPCService, RPCMessageConnection } from '@opensumi/ide-connection';
+import { WSChannelHandler, createSocketConnection } from '@opensumi/ide-connection/lib/browser';
+import { createWebSocketConnection } from '@opensumi/ide-connection/lib/common/message';
 import {
   getDebugLogger,
   IReporterService,
@@ -17,6 +12,8 @@ import {
   IEventBus,
 } from '@opensumi/ide-core-common';
 import { BackService } from '@opensumi/ide-core-common/lib/module';
+
+import { ClientAppStateService } from '../application';
 
 import { ModuleConstructor } from './app';
 
@@ -34,18 +31,22 @@ export async function createClientConnection2(
 ) {
   const reporterService: IReporterService = injector.get(IReporterService);
   const eventBus = injector.get(IEventBus);
+  const stateService = injector.get(ClientAppStateService);
 
   const wsChannelHandler = new WSChannelHandler(wsPath, initialLogger, protocols, clientId);
   wsChannelHandler.setReporter(reporterService);
-  wsChannelHandler.connection.addEventListener('open', () => {
+  wsChannelHandler.connection.addEventListener('open', async () => {
+    await stateService.reachedState('core_module_initialized');
     eventBus.fire(new BrowserConnectionOpenEvent());
   });
 
-  wsChannelHandler.connection.addEventListener('close', () => {
+  wsChannelHandler.connection.addEventListener('close', async () => {
+    await stateService.reachedState('core_module_initialized');
     eventBus.fire(new BrowserConnectionCloseEvent());
   });
 
-  wsChannelHandler.connection.addEventListener('error', (e) => {
+  wsChannelHandler.connection.addEventListener('error', async (e) => {
+    await stateService.reachedState('core_module_initialized');
     eventBus.fire(new BrowserConnectionErrorEvent(e));
   });
 
@@ -55,7 +56,6 @@ export async function createClientConnection2(
     token: WSChannelHandler,
     useValue: wsChannelHandler,
   });
-
   // 重连不会执行后面的逻辑
   const channel = await wsChannelHandler.openChannel('RPCService');
   channel.onReOpen(() => onReconnect());
